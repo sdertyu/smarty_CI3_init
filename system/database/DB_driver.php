@@ -618,6 +618,20 @@ abstract class CI_DB_driver {
 			$return_object = ! $this->is_write_type($sql);
 		}
 
+		if($this->is_write_type($sql)) {
+			$ci = &get_instance();
+			$now = date('m-d-Y H:i:s');
+			$date_now = date('m-Y', time());
+			$day = date('d', time());
+			$user = $ci->session->userdata('username');
+			$txt_log = "[". $user . "]" . " - " . $now . " --> " . $sql;
+			$directoty = "./LOGS/" . $date_now;
+			if(!is_dir($directoty)) {
+				mkdir($directoty, 0777, true);
+			}
+			file_put_contents($directoty . "/log_" . $day . ".txt" ,$txt_log ."\n", FILE_APPEND);
+		}
+
 		// Verify table prefix and replace if necessary
 		if ($this->dbprefix !== '' && $this->swap_pre !== '' && $this->dbprefix !== $this->swap_pre)
 		{
