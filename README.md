@@ -23,7 +23,8 @@
     }
 ```
 + Bước 4: Truy cập application\config\autoload.php và cấu hình libraries:
-``` $autoload['libraries'] = array('SmartyLibrary' => 'smarty'); ```
+
+	``` $autoload['libraries'] = array('SmartyLibrary' => 'smarty'); ```
 ---
 ### Ghi chú
 
